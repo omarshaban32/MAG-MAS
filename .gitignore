@@ -1,0 +1,18 @@
+# Ignore Terraform files
+*.tfstate
+*.tfstate.backup
+#*.tfvars
+.terraform/
+*.terraform.lock.hcl
+
+# Ignore sensitive files
+*.pem
+*.key
+*.pub
+
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore OS files
+.DS_Store
