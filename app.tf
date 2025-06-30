@@ -52,7 +52,7 @@ resource "oci_core_instance" "instance_mas_worker_1" {
   }
 }
 
-# compute worker instance
+# compute worker 2 instance
 resource "oci_core_instance" "instance_mas_worker_2" {
   compartment_id      = var.compartment_id
   availability_domain = var.ads[0]
@@ -79,32 +79,32 @@ resource "oci_core_instance" "instance_mas_worker_2" {
   }
 }
 
-# compute worker instance
-resource "oci_core_instance" "instance_mas_worker_3" {
-  compartment_id      = var.compartment_id
-  availability_domain = var.ads[0]
-  display_name        = var.instance_worker_3_name
-  shape               = var.instance_worker_shape.name
-  shape_config {
-    ocpus         = var.instance_worker_shape.ocpus
-    memory_in_gbs = var.instance_worker_shape.memory_in_gbs
-  }
-  source_details {
-    source_type = "image"
-    source_id   = var.instance_worker_image_id
-  }
-  create_vnic_details {
-    subnet_id        = oci_core_subnet.mas_snt_app.id
-    assign_public_ip = false
-    nsg_ids = [
-      oci_core_network_security_group.mas_nsg_app.id
-    ]
-  }
-  metadata = {
-    ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
-    #user_data           = data.cloudinit_config.mas_config.rendered
-  }
-}
+# # compute worker 3 instance
+# resource "oci_core_instance" "instance_mas_worker_3" {
+#   compartment_id      = var.compartment_id
+#   availability_domain = var.ads[0]
+#   display_name        = var.instance_worker_3_name
+#   shape               = var.instance_worker_shape.name
+#   shape_config {
+#     ocpus         = var.instance_worker_shape.ocpus
+#     memory_in_gbs = var.instance_worker_shape.memory_in_gbs
+#   }
+#   source_details {
+#     source_type = "image"
+#     source_id   = var.instance_worker_image_id
+#   }
+#   create_vnic_details {
+#     subnet_id        = oci_core_subnet.mas_snt_app.id
+#     assign_public_ip = false
+#     nsg_ids = [
+#       oci_core_network_security_group.mas_nsg_app.id
+#     ]
+#   }
+#   metadata = {
+#     ssh_authorized_keys = file("~/.ssh/id_rsa.pub")
+#     #user_data           = data.cloudinit_config.mas_config.rendered
+#   }
+# }
 
 
 

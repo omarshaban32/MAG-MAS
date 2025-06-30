@@ -45,5 +45,5 @@ resource "oci_load_balancer_backend" "mas_lb_backend" {
   backendset_name  = oci_load_balancer_backend_set.mas_lb_backend_set.name
   port             = var.lb_backend_config.port
 
-  ip_address = oci_core_instance.instance_app.private_ip
+  ip_address = oci_core_instance.instance_mas_master.private_ip
 }
